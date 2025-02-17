@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UoSuccess</title>
+    <link rel="stylesheet" href="style2.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+     <!-- Navigation -->
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="logo-Ecriture_UoSuccess.png" alt="UoSuccess Logo">
+            </div>
+            <ul class="nav-links">
+                <li><a href="Accueil.html">Accueil</a></li>
+                <li><a href="/Users/sandranguessan/School Staff/Winter 2025/SEG 3525/ASSIGNMENT/Nos services.html">Nos services</a></li>
+                <li><a href="NotreEquipe.html">Notre Équipe</a></li>
+                <li><a href="/Users/sandranguessan/School Staff/Winter 2025/SEG 3525/ASSIGNMENT/localisation.html">Locations</a></li>
+                <li><a href="/Users/sandranguessan/School Staff/Winter 2025/SEG 3525/ASSIGNMENT/A-propos-de-nous.html">À propos de nous</a></li>
+                <li><a href="contacts.html">Contact</a></li>
+                <li><a href="Information-Client.html">Connexion</a></li>
+                    
+                
+            </ul>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+
+    <section class="services-section">
+        <div class="section-title-box">
+            <h1>Nos Services</h1>
+        </div>
+        <div class="service-grid">
+            <div class="service">
+                <h2>Tutorat</h2>
+                <p>Réservez une séance pour un soutien académique.</p>
+                <div class="tarif">
+                    <h3>Grille Tarifaire</h3>
+                    <p>30€/heure - Séance individuelle</p>
+                    <p>20€/heure - Séance en groupe</p>
+                </div>
+                <button class="select-service" onclick="selectService('Tutorat', '30€/heure', 'Franck', '9am-12pm / semaine', 'Pavillon Tabaret', 'Microéconomie', '42€')">Sélectionner</button>
+            </div>
+            <div class="service">
+                <h2>Mentorat</h2>
+                <p>Accédez à des ressources et à une assistance personnalisée.</p>
+                <div class="tarif">
+                    <h3>Grille Tarifaire</h3>
+                    <p>50€/mois - Accompagnement standard</p>
+                    <p>80€/mois - Accompagnement premium</p>
+                </div>
+                <button class="select-service" onclick="selectService('Mentorat', '50€/mois', 'Franck', 'Flexible', 'En ligne', 'Accompagnement personnel', '50€')">Sélectionner</button>
+            </div>
+            <div class="service">
+                <h2>Carrière</h2>
+                <p>Recevez des conseils professionnels et réseautage.</p>
+                <div class="tarif">
+                    <h3>Grille Tarifaire</h3>
+                    <p>100€ - Coaching CV & Entretien</p>
+                    <p>200€ - Accompagnement carrière complet</p>
+                </div>
+                <button class="select-service" onclick="selectService('Carrière', '100€', 'Marie', '10am-1pm', 'Bureau ABC', 'Coaching carrière', '100€')">Sélectionner</button>
+            </div>
+            <div class="service">
+                <h2>Rencontrer nos diplômés</h2>
+                <p>Rencontrez nos alumnis pour en savoir plus sur les réalités de la vie en entreprise.</p>
+                <div class="tarif">
+                    <h3>Grille Tarifaire</h3>
+                    <p>100€ - Coaching CV & Entretien</p>
+                    <p>200€ - Accompagnement carrière complet</p>
+                </div>
+                <button class="select-service" onclick="selectService('Rencontrer nos diplômés', '100€', 'Luc Martin', 'Flexible', 'En ligne', 'Réseautage carrière', '100€')">Sélectionner</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Pop-up de sélection (avant le récapitulatif) -->
+    <!-- Section Pop-up de sélection (avant le récapitulatif) -->
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <h2>Choisir les détails du rendez-vous</h2>
+        <form id="appointment-form">
+            <label for="appointment-date">Date de rendez-vous :</label>
+            <input type="date" id="appointment-date" required><br><br>
+            <label for="appointment-time">Heure du rendez-vous :</label>
+            <input type="time" id="appointment-time" required><br><br>
+            
+            <!-- Ajout du champ pour le nombre d'élèves -->
+            <label for="number-of-students">Nombre d'élèves :</label>
+            <input type="number" id="number-of-students" required><br><br>
+            
+            <button type="button" onclick="submitAppointment()">Confirmer le rendez-vous</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    function submitAppointment() {
+        const appointmentDate = document.getElementById('appointment-date').value;
+        const appointmentTime = document.getElementById('appointment-time').value;
+        const numberOfStudents = document.getElementById('number-of-students').value;
+
+        if (!appointmentDate || !appointmentTime || !numberOfStudents) {
+            alert('Veuillez remplir tous les champs');
+            return;
+        }
+
+        // Ajouter la date, l'heure et le nombre d'élèves à l'élément summary
+        const modalInfo = {
+            date: appointmentDate,
+            time: appointmentTime,
+            students: numberOfStudents
+        };
+
+        updateSummary(modalInfo);
+        closeModal();
+    }
+
+    function updateSummary(modalInfo) {
+        const summaryElement = document.getElementById('summary');
+        summaryElement.innerHTML = '';
+
+        selectedServices.forEach(service => {
+            const serviceDiv = document.createElement('div');
+            serviceDiv.classList.add('summary-item');
+            serviceDiv.innerHTML = `
+                <div class="service-card">
+                    <h3>${service.serviceName}</h3>
+                    <p><strong>Mentor:</strong> ${service.mentorName}</p>
+                    <p><strong>Horaire:</strong> ${service.schedule}</p>
+                    <p><strong>Lieu:</strong> ${service.location}</p>
+                    <p><strong>Matière:</strong> ${service.subject}</p>
+                    <p><strong>Prix:</strong> ${service.servicePrice}</p>
+                    <p><strong>Date du RDV:</strong> ${modalInfo.date}</p>
+                    <p><strong>Heure du RDV:</strong> ${modalInfo.time}</p>
+                    <p><strong>Nombre d'élèves:</strong> ${modalInfo.students}</p> <!-- Afficher le nombre d'élèves -->
+                </div>
+            `;
+            summaryElement.appendChild(serviceDiv);
+        });
+
+        document.getElementById('total-price').innerText = totalPrice + '€';
+    }
+</script>
+
+
+    <!-- Section Révision des sélections -->
+    <section class="selection-summary">
+        <div class="section-title-box">
+            <h1>Récapitulatif de vos Sélections</h1>
+        </div>
+        <div id="summary"></div>
+        <div class="total-price">
+            <h3>Total: <span id="total-price">0€</span></h3>
+        </div>
+        <button class="proceed-to-payment" onclick="proceedToPayment()">Procéder au paiement</button>
+    </section>
+
+    <footer id="Contacts" class="footer">
+        <div class="footer-container">
+            <!-- Section Licence -->
+            <div class="footer-section">
+                <h3>Licence & Mentions légales</h3>
+                <p>&copy; 2024 Nom de l'organisation. Tous droits réservés.</p>
+                <p>Politique de confidentialité | Conditions d'utilisation</p>
+            </div>
+    
+            <!-- Section Partenaires -->
+            <div class="footer-section">
+                <h3>Nos Partenaires</h3>
+                <ul>
+                    <li><a href="#">Université XYZ</a></li>
+                    <li><a href="#">Entreprise ABC</a></li>
+                    <li><a href="#">Fondation 123</a></li>
+                </ul>
+            </div>
+    
+            <!-- Section Contact -->
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p>Email : contact@notreorganisation.com</p>
+                <p>Téléphone : +33 1 23 45 67 89</p>
+                <p>Adresse : 123 Rue des Étudiants, 75000 Paris</p>
+            </div>
+    
+            <!-- Section Réseaux Sociaux -->
+            <div class="footer-section">
+                <h3>Suivez-nous</h3>
+                <div class="social-links">
+                    <a href="#" class="social-icon">🔵 Facebook</a>
+                    <a href="#" class="social-icon">📸 Instagram</a>
+                    <a href="#" class="social-icon">🐦 Twitter</a>
+                    <a href="#" class="social-icon">💼 LinkedIn</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    
+
+    <script>
+        let totalPrice = 0;
+        const selectedServices = [];
+    
+        function selectService(serviceName, price, mentorName, schedule, location, subject, servicePrice) {
+            selectedServices.push({ serviceName, price, mentorName, schedule, location, subject, servicePrice });
+            totalPrice += parseFloat(servicePrice.replace('€', '').replace('$', '').trim());
+    
+            openModal(serviceName, price, mentorName, schedule, location, subject, servicePrice);  // Ouvrir la modale après sélection
+        }
+    
+        function openModal(serviceName, price, mentorName, schedule, location, subject, servicePrice) {
+            document.getElementById('modal').style.display = 'block';
+            // Passer les informations à la modale si nécessaire
+        }
+    
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+    
+        function submitAppointment() {
+            const appointmentDate = document.getElementById('appointment-date').value;
+            const appointmentTime = document.getElementById('appointment-time').value;
+            const numberOfStudents = document.getElementById('number-of-students').value;
+    
+            if (!appointmentDate || !appointmentTime || !numberOfStudents) {
+                alert('Veuillez remplir tous les champs');
+                return;
+            }
+    
+            // Ajouter la date, l'heure et le nombre d'élèves à l'élément summary
+            const modalInfo = {
+                date: appointmentDate,
+                time: appointmentTime,
+                students: numberOfStudents
+            };
+    
+            updateSummary(modalInfo);
+            closeModal();
+        }
+    
+        function updateSummary(modalInfo) {
+            const summaryElement = document.getElementById('summary');
+            summaryElement.innerHTML = '';
+    
+            selectedServices.forEach(service => {
+                const serviceDiv = document.createElement('div');
+                serviceDiv.classList.add('summary-item');
+                serviceDiv.innerHTML = `
+                    <div class="service-card">
+                        <h3>${service.serviceName}</h3>
+                        <p><strong>Mentor:</strong> ${service.mentorName}</p>
+                        <p><strong>Horaire:</strong> ${service.schedule}</p>
+                        <p><strong>Lieu:</strong> ${service.location}</p>
+                        <p><strong>Matière:</strong> ${service.subject}</p>
+                        <p><strong>Prix:</strong> ${service.servicePrice}</p>
+                        <p><strong>Date du RDV:</strong> ${modalInfo.date}</p>
+                        <p><strong>Heure du RDV:</strong> ${modalInfo.time}</p>
+                        <p><strong>Nombre d'élèves:</strong> ${modalInfo.students}</p> <!-- Afficher le nombre d'élèves -->
+                    </div>
+                `;
+                summaryElement.appendChild(serviceDiv);
+            });
+    
+            document.getElementById('total-price').innerText = totalPrice + '€';
+        }
+    
+        function proceedToPayment() {
+            alert('Vous êtes redirigé vers le paiement...');
+            // Ajouter la logique de redirection vers le paiement ici
+        }
+    </script>
+    
+
+</body>
+</html>

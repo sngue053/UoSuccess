@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UoSuccess</title>
+    <link rel="stylesheet" href="style2.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="logo-Ecriture_UoSuccess.png" alt="UoSuccess Logo">
+            </div>
+            <ul class="nav-links">
+                <li><a href="Accueil.html">Accueil</a></li>
+                <li><a href="/Users/sandranguessan/School Staff/Winter 2025/SEG 3525/ASSIGNMENT/Nos services.html">Nos services</a></li>
+                <li><a href="NotreEquipe.html">Notre Équipe</a></li>
+                <li><a href="/Users/sandranguessan/School Staff/Winter 2025/SEG 3525/ASSIGNMENT/localisation.html">Locations</a></li>
+                <li><a href="/Users/sandranguessan/School Staff/Winter 2025/SEG 3525/ASSIGNMENT/A-propos-de-nous.html">À propos de nous</a></li>
+                <li><a href="contacts.html">Contact</a></li>
+                <li><a href="Information-Client.html">Connexion</a></li>
+                    
+                
+            </ul>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Section principale -->
+    <section class="hero">
+        <div class="text">
+            <h1>Comme lui, tu peux le faire ! </h1>
+            <h2>Réservez votre consultation dès maintenant !</h2>
+            <p>Remplissez notre formulaire et obtenez un rendez-vous personnalisé.</p>
+            <button class="btn-reserver" id="openPopup">Réserver</button>
+        </div>
+        <div class="images">
+            <img src="etapes-du-succes .png" alt="Réservation" class="main-img">
+        </div>
+    </section>
+
+    <!-- POP-UP DE RÉSERVATION -->
+    <div class="popup-container" id="popupContainer">
+        <div class="popup">
+            <span class="close-popup" id="closePopup">&times;</span>
+            <h3>Faire une réservation</h3>
+            <form id="reservationForm">
+                <label for="nom">Nom :</label>
+                <input type="text" id="nom" name="nom" required>
+    
+                <label for="prenom">Prénom :</label>
+                <input type="text" id="prenom" name="prenom" required>
+    
+                <label for="email">Adresse courriel :</label>
+                <input type="email" id="email" name="email" required>
+    
+                <label for="telephone">Téléphone :</label>
+                <input type="tel" id="telephone" name="telephone" required>
+    
+                <label for="service">Pour quel service souhaitez-vous faire une réservation ?</label>
+                <select id="service" name="service" required>
+                    <option value="">Sélectionnez un service</option>
+                    <option value="tutorat">Tutorat</option>
+                    <option value="coaching">Coaching</option>
+                    <option value="accompagnement">Accompagnement professionnel</option>
+                </select>
+    
+                <label for="specificite">Spécificité (ex: matière, domaine) :</label>
+                <input type="text" id="specificite" name="specificite" placeholder="Ex: Chimie, Mathématiques, Développement personnel">
+    
+                <label for="preference">Préférez-vous une prestation en présentiel ou en ligne ?</label>
+                <select id="preference" name="preference" required>
+                    <option value="">Sélectionnez une option</option>
+                    <option value="presentiel">En présentiel</option>
+                    <option value="enligne">En ligne</option>
+                </select>
+
+                <label for="nombreEleves">Nombre d'élèves :</label>
+                <input type="number" id="nombreEleves" name="nombreEleves" min="1" required>
+
+    
+                <label for="date">Date de réservation :</label>
+                <input type="date" id="date" name="date" required>
+    
+                <label for="message">Message :</label>
+                <textarea id="message" name="message" placeholder="Détails supplémentaires..."></textarea>
+    
+                <button type="submit">Soumettre mon formulaire</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("reservationForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Empêche l'envoi classique du formulaire
+    
+            const nom = document.getElementById("nom").value;
+            const prenom = document.getElementById("prenom").value;
+            const email = document.getElementById("email").value;
+            const telephone = document.getElementById("telephone").value;
+            const service = document.getElementById("service").value;
+            const specificite = document.getElementById("specificite").value;
+            const preference = document.getElementById("preference").value;
+            const date = document.getElementById("date").value;
+            const message = document.getElementById("message").value;
+            const nombreEleves = document.getElementById("nombreEleves").value;
+    
+            alert(`Réservation confirmée :
+            - Nom : ${nom} ${prenom}
+            - Email : ${email}
+            - Téléphone : ${telephone}
+            - Service : ${service}
+            - Spécificité : ${specificite}
+            - Préférence : ${preference}
+            - Date : ${date}
+            - Nombre d'élèves : ${nombreEleves}
+            - Message : ${message}`);
+    
+            // Ici, tu peux envoyer ces données à un serveur via une requête AJAX ou Fetch
+        });
+    
+        // Gestion du pop-up
+        const openPopup = document.getElementById("openPopup");
+        const closePopup = document.getElementById("closePopup");
+        const popupContainer = document.getElementById("popupContainer");
+    
+        openPopup.addEventListener("click", () => {
+            popupContainer.style.display = "flex";
+        });
+    
+        closePopup.addEventListener("click", () => {
+            popupContainer.style.display = "none";
+        });
+    
+        // Fermer le pop-up si on clique en dehors
+        window.addEventListener("click", (e) => {
+            if (e.target === popupContainer) {
+                popupContainer.style.display = "none";
+            }
+        });
+    </script>
+    
+
+</body>
+<footer class="footer">
+    <div class="footer-container">
+        <!-- Section Licence -->
+        <div class="footer-section">
+            <h3>Licence & Mentions légales</h3>
+            <p>&copy; 2024 Nom de l'organisation. Tous droits réservés.</p>
+            <p>Politique de confidentialité | Conditions d'utilisation</p>
+        </div>
+
+        <!-- Section Partenaires -->
+        <div class="footer-section">
+            <h3>Nos Partenaires</h3>
+            <ul>
+                <li><a href="#">Université XYZ</a></li>
+                <li><a href="#">Entreprise ABC</a></li>
+                <li><a href="#">Fondation 123</a></li>
+            </ul>
+        </div>
+
+        <!-- Section Contact -->
+        <div class="footer-section">
+            <h3>Contact</h3>
+            <p>Email : contact@notreorganisation.com</p>
+            <p>Téléphone : +33 1 23 45 67 89</p>
+            <p>Adresse : 123 Rue des Étudiants, 75000 Paris</p>
+        </div>
+
+        <!-- Section Réseaux Sociaux -->
+        <div class="footer-section">
+            <h3>Suivez-nous</h3>
+            <div class="social-links">
+                <a href="#" class="social-icon">🔵 Facebook</a>
+                <a href="#" class="social-icon">📸 Instagram</a>
+                <a href="#" class="social-icon">🐦 Twitter</a>
+                <a href="#" class="social-icon">💼 LinkedIn</a>
+            </div>
+        </div>
+    </div>
+</footer>
+</html>

@@ -1,0 +1,981 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Style global */
+body {
+    background: #F8F2F2;
+    color: #333;
+}
+
+/* ---- NAVIGATION ---- */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: px 20px;
+    background: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.logo img {
+    width: 250px;
+    height: auto;
+    display: block;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 60px;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    padding: 10px 15px;
+}
+
+nav ul li a:hover {
+    background: #8F001A;
+    border-radius: 5px;
+}
+
+/* ---- BOUTON RESERVER ---- */
+.btn-reserver {
+    background: #8F001A;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 200px; /* Largeur fixe */
+}
+
+.btn-reserver:hover {
+    background: #A80022;
+}
+
+/* ---- SECTION PRINCIPALE ---- */
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 90px;
+    text-align: left;
+    margin-top: 80px;
+}
+
+.text {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* Définit l’espace entre h1 et h2 */
+}
+
+.text h1 {
+    font-size: 2.5rem; /* Définit une taille plus grande pour le titre */
+    font-weight: bold;
+}
+
+.text h2 {
+    font-size: 2.5rem; /* Taille légèrement plus petite que h1 */
+    font-weight: bold;
+}
+
+.images {
+    width: 40%;
+}
+
+.main-img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+/* ---- SECTION ADDITIONNELLE ---- */
+.additional-section {
+    background: #fff;
+    padding: 40px 50px;
+    margin-top: 80px;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: space-between;
+}
+
+.contact, .partners, .comments, .leave-comment, .faq {
+    flex: 1 1 200px;
+    padding: 20px;
+    background: #f5f5f5;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h3 {
+    color: #8F001A;
+    margin-bottom: 10px;
+}
+
+ul {
+    list-style-type: none;
+}
+
+ul li {
+    margin-bottom: 8px;
+}
+
+textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+}
+
+button {
+    background: #8F001A;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #a1001a;
+}
+
+/* ---- POP-UP DE RÉSERVATION ---- */
+.popup-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.popup {
+    background: #F2F2F2;
+    padding: 10px;
+    width: 1200px;
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.close-popup {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #8F001A;
+}
+
+.popup h3 {
+    text-align: center;
+    margin-bottom: 15px;
+    color: #8F001A;
+}
+
+.popup form {
+    display: flex;
+    flex-direction: column;
+}
+
+.popup label {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.popup input, .popup textarea {
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.popup button {
+    margin-top: 6px;
+    background: #8F001A;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.popup button:hover {
+    background: #A80022;
+}
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .additional-section {
+        padding: 20px;
+    }
+
+    .text, .images {
+        width: 100%;
+    }
+
+    .popup {
+        width: 90%;
+    }
+}
+
+/* Section Services */
+.services-section {
+    text-align: center;
+    padding: 30px 20px;
+    background-color: #f8f8f8;
+}
+.section-title-box {
+    background: #8F001A;
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    width: fit-content;
+    margin: 0 auto 30px auto;
+}
+
+.services-section h1 {
+    font-size: 2rem;
+    margin-bottom: 0px;
+    color: white;;
+}
+.services-section h2 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: #8F001A;
+}
+
+.service-grid {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.service {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 300px; /* Taille des blocs */
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.service h2 {
+    color: #8F001A;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+.service p {
+    font-size: 1rem;
+    color: #555;
+}
+
+/* Effet au survol */
+.service:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Section Alumni */
+.alumni-section {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #fff;
+}
+
+.section-title-box {
+    background: #8F001A;
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    width: fit-content;
+    margin: 0 auto 30px auto;
+}
+
+.alumni-grid {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.alumni {
+    display: flex;
+    background: #f8f8f8;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    text-align: left;
+    align-items: center;
+    gap: 15px;
+}
+
+.alumni img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.alumni-info h2 {
+    color: #8F001A;
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+.alumni-info p {
+    font-size: 1rem;
+    color: #555;
+}
+
+
+/* Grille tarifaire */
+.tarif {
+    background: #f8f8f8;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.tarif h3 {
+    color: #8F001A;
+}
+.footer {
+    background: #333;
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.footer-section {
+    flex: 1 1 250px;
+    margin-bottom: 20px;
+}
+
+.footer-section h3 {
+    color: #8F001A;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.footer-section p,
+.footer-section ul {
+    font-size: 1rem;
+    color: #ddd;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin: 5px 0;
+}
+
+.footer-section ul li a {
+    text-decoration: none;
+    color: white;
+    transition: color 0.3s;
+}
+
+.footer-section ul li a:hover {
+    color: #8F001A;
+}
+
+/* Style des liens sociaux */
+.social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.social-icon {
+    text-decoration: none;
+    color: white;
+    font-size: 1rem;
+    transition: color 0.3s;
+}
+
+.social-icon:hover {
+    color: #8F001A;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+
+
+
+
+/* ---- INFORMATION-CLIENT SECTION PROFIL ET CONTACT ---- */
+.profile-contact-section {
+    max-width: 1000px;
+    margin: 40px auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+}
+
+/* ---- CONTENEUR PRINCIPAL AVEC FLEXBOX ---- */
+.profile-contact-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    width: 100%;
+}
+
+/* ---- FORMULAIRE (PROFIL) ---- */
+.profile-form {
+    flex: 1; /* Prend 50% de l’espace */
+    background: #f8f8f8;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.profile-contact-section h1, 
+.profile-contact-section h2 {
+    text-align: center;
+    color: #8F001A;
+    margin-bottom: 20px;
+}
+
+/* ---- FORMULAIRE ---- */
+form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.form-group {
+    flex: 1 1 48%; /* Chaque champ prend 48% pour être sur 2 colonnes */
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+    border-color: #8F001A;
+    outline: none;
+}
+
+/* ---- BOUTON ENREGISTRER ---- */
+button[type="submit"] {
+    background: #8F001A;
+    color: white;
+    border: none;
+    padding: 0.1px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s;
+    width: 50%;
+    margin-top: 5px;
+}
+
+button[type="submit"]:hover {
+    background: #A80022;
+}
+
+/* ---- SECTION CONTACT ---- */
+.contact-info {
+    flex: 1; /* Prend 50% de l’espace */
+    padding: 20px;
+    background: #f8f8f8;
+    border-radius: 10px;
+}
+
+.contact-info h2 {
+    text-align: center;
+    color: #8F001A;
+    margin-bottom: 20px;
+}
+
+.contact-site {
+    background: #fff;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.contact-site h3 {
+    color: #8F001A;
+    margin-bottom: 10px;
+}
+
+.contact-site p {
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.contact-site ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.contact-site ul li {
+    font-size: 0.9rem;
+    color: #333;
+}
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 768px) {
+    .profile-contact-section {
+        flex-direction: column; /* Passe en mode colonne sur petits écrans */
+    }
+
+    .profile-form, .contact-info {
+        flex: 1 1 100%; /* Les sections prennent la largeur complète */
+    }
+
+    .form-group {
+        flex: 1 1 100%; /* Les champs passent en pleine largeur */
+    }
+}
+
+
+
+/* ---- LOCALISATION --- SECTION PROFIL ET CONTACT ---- */
+.profile-contact-section {
+    max-width: 1200px; /* Ajuster la largeur totale de la section */
+    margin: 40px auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+/* ---- IMAGE CARTE STATIQUE ---- */
+.contact-map {
+    flex: 2; /* Agrandir la carte en prenant plus de place */
+    position: relative;
+}
+
+.map-container {
+    position: relative;
+}
+
+.map-image {
+    width: 100%;
+    height: 700px; /* Augmenter la taille de la carte */
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* ---- SECTION CONTACT ---- */
+.contact-info {
+    flex: 1; /* La section contact prendra moins de place */
+    padding: 20px;
+    background: #f8f8f8;
+    border-radius: 10px;
+}
+
+/* ---- MARQUEURS (points sur la carte) ---- */
+.marker {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Positionner les marqueurs à des endroits spécifiques */
+.marker:first-child {
+    top: 20%; /* Ajuste la position verticale */
+    left: 30%; /* Ajuste la position horizontale */
+}
+
+.marker:nth-child(2) {
+    top: 60%; /* Ajuste la position verticale */
+    left: 50%; /* Ajuste la position horizontale */
+}
+
+
+
+
+
+
+/* CONFIRMATION Selection Summary Section */
+.selection-summary {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.selection-summary h1 {
+    font-size: 26px;
+    margin-bottom: 20px;
+}
+
+.summary-item {
+    margin-bottom: 20px;
+}
+
+.service-card {
+    background-color: #ecf0f1;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.service-card h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.total-price {
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.proceed-to-payment {
+    background-color: #3498db;
+    color: white;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 20px;
+}
+
+.proceed-to-payment:hover {
+    background-color: #2980b9;
+}
+
+
+
+
+
+/* Sections */
+section {
+    padding: 40px 20px;
+    margin: 40px 0;
+    text-align: center;
+}
+
+.section-title-box h1 {
+    font-size: 2.5rem;
+    color: #0066cc;
+    margin-bottom: 10px;
+}
+
+.section-title-box p {
+    font-size: 1.2rem;
+    color: #666;
+}
+
+.about-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.about-item {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 350px;
+    transition: transform 0.3s ease;
+}
+
+.about-item:hover {
+    transform: translateY(-10px);
+}
+
+.about-item h2 {
+    font-size: 1.8rem;
+    color: #0066cc;
+    margin-bottom: 10px;
+}
+
+.about-item p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.5;
+}
+
+.about-item ul {
+    list-style: none;
+    padding: 0;
+}
+
+.about-item ul li {
+    font-size: 1rem;
+    color: #555;
+    margin: 5px 0;
+}
+
+/* Section Notre Équipe */
+.team-section {
+    background-color: #f9f9f9;
+}
+
+.team-container {
+    display: flex;
+    justify-content: space-around;
+    gap: 40px;
+    margin-top: 30px;
+}
+
+.team-member {
+    text-align: center;
+    width: 250px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.team-member:hover {
+    transform: translateY(-10px);
+}
+
+.team-photo {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 15px;
+}
+
+.team-member h3 {
+    font-size: 1.6rem;
+    color: #0066cc;
+    margin-bottom: 10px;
+}
+
+.team-member p {
+    font-size: 1rem;
+    color: #555;
+}
+
+/* Section Témoignages */
+.testimonials-section {
+    background-color: #fff;
+}
+
+.testimonials-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.testimonial {
+    width: 400px;
+    background-color: #f4f4f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.testimonial p {
+    font-size: 1rem;
+    color: #555;
+    font-style: italic;
+    margin-bottom: 15px;
+}
+
+.testimonial h3 {
+    font-size: 1.2rem;
+    color: #0066cc;
+    font-weight: bold;
+}
+
+/* Section Suivez-nous */
+.social-section {
+    background-color: #f9f9f9;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.social-links a {
+    text-decoration: none;
+    color: #0066cc;
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: #ff6600;
+}
+
+/* Footer */
+footer {
+    background-color: #0066cc;
+    color: white;
+    padding: 40px 0;
+    margin-top: 40px;
+}
+
+footer .footer-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+footer .footer-section {
+    width: 250px;
+}
+
+footer .footer-section h3 {
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+}
+
+footer .footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+footer .footer-section ul li {
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+footer .footer-section a {
+    text-decoration: none;
+    color: white;
+}
+
+footer .footer-section a:hover {
+    color: #ff6600;
+}
+
+footer .social-links {
+    display: flex;
+    gap: 15px;
+}
+
+footer .social-links a {
+    font-size: 1.5rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    header nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    header .nav-links {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .about-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .team-container {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .testimonials-container {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    footer .footer-container {
+        flex-direction: column;
+        align-items: center;
+    }
+}
